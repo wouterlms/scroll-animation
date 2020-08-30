@@ -58,7 +58,7 @@ export default class Controller {
      * remove scene
 	 * @param {Scene} scene
      */
-    idle(scene) {
+    remove(scene) {
         this.scenes.splice(this.scenes.indexOf(scene), 1);
     }
 
@@ -150,8 +150,8 @@ export default class Controller {
 			 */
 			else if (adjustedScrollPos >= scene.elementProperties.offsetTop && adjustedScrollPos <= scene.elementProperties.offsetTop + scene.elementProperties.height)
 			{
-                const distanceToBottom = scene.elementProperties.offsetTop + scene.elementProperties.height - adjustedScrollPos;
-
+				const distanceToBottom = scene.elementProperties.offsetTop + scene.elementProperties.height - adjustedScrollPos;
+				
                 const distanceToBottomPercentage = (distanceToBottom / scene.elementProperties.height) * -1 + 1;
 				const totalPercentage = distanceToBottomPercentage * 100;
 	
@@ -202,7 +202,7 @@ export default class Controller {
 				});
 				
 				if (scene.params.pinned) {
-					properties.translateY = `calc(${distanceToBottomPercentage * scene.elementProperties.height}px + ${properties.translateY || 0})`;
+					properties.translateY = `calc(${distanceToBottomPercentage * scene.elementProperties.height}px + ${properties.translateY || '0px'})`;
 				}
 			}
 			/**
@@ -242,7 +242,7 @@ export default class Controller {
 		});
 		
 		if (scene.params.pinned) {
-			properties.translateY = `calc(${scene.elementProperties.height}px + ${properties.translateY || 0})`;
+			properties.translateY = `calc(${scene.elementProperties.height}px + ${properties.translateY || '0px'})`;
 		}
     }
 
